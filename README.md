@@ -1,7 +1,12 @@
 PickupSports
 ============
 
-User Stories
+### Team Members
+
+* Clark Perkins
+
+
+### User Stories
 
 1. As a user,i want to be able to create an event that people can join.
 2. As a user, I want to be able to find other peoples events and say I am going.
