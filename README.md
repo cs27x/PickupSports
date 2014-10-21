@@ -4,6 +4,10 @@ PickupSports
 ### Team Members
 
 * Clark Perkins
+* Michael Esparza
+* Jeremey Key
+* Chad Ryan
+* Sean O'Reilly
 
 
 ### User Stories
