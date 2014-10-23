@@ -123,7 +123,7 @@ __GET__ /events
       - 500 if there is a server error
       
 
-__GET__ /events/<id>
+__GET__ /events/\<id\>
       
       Parameters: none
       
