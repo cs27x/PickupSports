@@ -10,6 +10,7 @@ PickupSports
 * Chad Ryan
 * Sean O'Reilly
 * Cameron Ridgewell
+* Aston King
 
 
 ### User Stories
