@@ -86,18 +86,18 @@ __POST__ /events
    Parameters:
       - A JSON request body representing a foo object. Example: 
       
-      ```
-      {
-        "sport": "asdf",
-        "attendance": "",
-        "skill_level": "",
-        "equipment": "",
-        "location": "",
-        "time": "",
-        "description": "",
-        "free": true
-      }
-      ```
+ ```
+ {
+    "sport": "asdf",
+    "attendance": "",
+    "skill_level": "",
+    "equipment": "",
+    "location": "",
+    "time": "",
+    "description": "",
+    "free": true
+ }
+ ```
       
    Response:
       - 201 if successful with an empty body
@@ -112,15 +112,15 @@ __GET__ /events
    Reponse:
       - 200 if successful with a body that is a list of json objects matching the above description.  Example: 
       
-      ```
-      [
-          {
-              "id": 3,
-              ...
-          },
-          ...
-      ]
-      ```
+ ```
+ [
+     {
+         "id": 3,
+         ...
+     },
+     ...
+ ]
+ ```
       - 400 if there is an error with the request (not very likely)
       - 500 if there is a server error
       
