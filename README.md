@@ -8,6 +8,7 @@ PickupSports
 * Jeremey Key
 * Chad Ryan
 * Sean O'Reilly
+* Cameron Ridgewell
 
 
 ### User Stories
