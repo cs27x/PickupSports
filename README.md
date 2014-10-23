@@ -107,11 +107,12 @@ __GET__ /events
    Parameters: none
 
    Reponse:
-      - 200 if successful with a body that is a list of json objects matching the above description.  Example:
+      - 200 if successful with a body that is a list of json objects matching the above description.  Example: 
       ```json
       [
           {
-          ...
+              "id": 3,
+              ...
           },
           ...
       ]
@@ -119,4 +120,13 @@ __GET__ /events
       - 400 if there is an error with the request (not very likely)
       - 500 if there is a server error
       
+
+__GET__ /events/<id>
       
+      Parameters: none
+      
+      Response:
+         - 200 if an object with the given ID exists, with a body of the json of that event
+         - 400 if there was a bad request
+         - 404 if an event with the given ID does not exist
+         - 500 if there is a server error
