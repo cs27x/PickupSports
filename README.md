@@ -75,5 +75,48 @@ PickupSports
 11. We will divy up the work so that people who have heavy schedules can work less when they have other class work and vice versa.
 12. The riskiest parts of this assignment is setting up a server which most of us have never done. We will all be dressed in risky business atire (jackets and tighty whities).
 
-###HTTP API Section
--We will be using the Java Spring API
+###HTTP API
+
+
+
+__POST__ /events
+   
+   Parameters:
+      - A JSON request body representing a foo object. Example: 
+      ```json
+      {
+        "sport": "asdf",
+        "attendance": "",
+        "skill_level": "",
+        "equipment": "",
+        "location": "",
+        "time": "",
+        "description": "",
+        "free": true
+      }
+      ```
+      
+   Response:
+      - 201 if successful with an empty body
+      - 400 if there is an error in the request or request JSON
+      - 500 if there is a server error
+      
+      
+__GET__ /events
+
+   Parameters: none
+
+   Reponse:
+      - 200 if successful with a body that is a list of json objects matching the above description.  Example:
+      ```json
+      [
+          {
+          ...
+          },
+          ...
+      ]
+      ```
+      - 400 if there is an error with the request (not very likely)
+      - 500 if there is a server error
+      
+      
