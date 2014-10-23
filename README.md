@@ -3,6 +3,7 @@ PickupSports
 
 ### Team Members
 
+* Jusitn Paul
 * Clark Perkins
 * Michael Esparza
 * Jeremey Key
