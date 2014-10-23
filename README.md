@@ -85,7 +85,8 @@ __POST__ /events
    
    Parameters:
       - A JSON request body representing a foo object. Example: 
-      ```json
+      
+      ```
       {
         "sport": "asdf",
         "attendance": "",
@@ -110,7 +111,8 @@ __GET__ /events
 
    Reponse:
       - 200 if successful with a body that is a list of json objects matching the above description.  Example: 
-      ```json
+      
+      ```
       [
           {
               "id": 3,
