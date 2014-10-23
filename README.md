@@ -3,14 +3,13 @@ PickupSports
 
 ### Team Members
 
-* Jusitn Paul
-* Clark Perkins
-* Michael Esparza
-* Jeremey Key
-* Chad Ryan
-* Sean O'Reilly
-* Cameron Ridgewell
-* Aston King
+* High Master Jusitn Paul
+* Jedi Coucil Member Clark Perkins
+* Padawan Learner Michael Esparza
+* Youngling Jeremey Key
+* Jedi Knight Chad Ryan
+* Jedi Cowboy Sean O'Reilly
+* Yoda Cameron Ridgewell
 
 
 ### User Stories
@@ -60,3 +59,21 @@ PickupSports
 14. As a user, I want to be able to login and have a rating based on my attendence and skill.
   
   -User accounts with ratings that are improved (or reduced) by other users
+
+
+###Process
+-Front end will be using Android Studio
+-Two different main branches for front end and back end. Each person will branch off the main branch to create a feature. Once the feature completed we will branch again to test the feature. If the feature is properly tested we will submit a pull request so everyone can review the change. The feature will then be merged into the main branch. At the end of the project we will merge both the front and back end projects into master. Branches will be named in the following fashion feature_name/frontend/feat or feature_name/frontend/test.
+-All Android Activities will have associated Java classes so we can just test the java classes instead of the android classes.
+-One jUnit test class per java class.
+-Each person in the team will review the pull request before it merges into the main branch.
+-After a feature is completed, the commit log will indicate which user story was being worked on. All user stories will be a Github issue and when one is completed we will close out the issue.
+-We will use javadoc comments
+-We will decide on 5 user stories per build cycle to complete.
+-We will communicate when Master Justin rings the gong and we recieve smoke signals from Gondor (aka the backend team). When Theodin sounds the hord of Rohan we will stop working. We will also use GroupMe.
+-We will give others our application and ask them to try it out. Then they will tell us what stinks and we will change it.
+-We will divy up the work so that people who have heavy schedules can work less when they have other class work and vice versa.
+-The riskiest parts of this assignment is setting up a server which most of us have never done. We will all be dressed in risky business atire (jackets and tighty whities).
+
+###HTTP API Section
+-We will be using the Java Spring API
