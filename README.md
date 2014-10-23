@@ -3,13 +3,14 @@ PickupSports
 
 ### Team Members
 
-* High Master Jusitn Paul
-* Jedi Coucil Member Clark Perkins
+* High Master Justin Paul
+* Sith Lord Clark Perkins
 * Pod Racer Michael "Now this is pod racing" Esparza
 * Youngling Jeremey Key
 * Jedi Knight Chad Ryan
 * Jedi Cowboy Sean O'Reilly
 * Yoda Cameron Ridgewell
+* Darth Aston King
 
 
 ### User Stories
