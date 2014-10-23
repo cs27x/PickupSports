@@ -5,7 +5,7 @@ PickupSports
 
 * High Master Jusitn Paul
 * Jedi Coucil Member Clark Perkins
-* Padawan Learner Michael Esparza
+* Pod Racer Michael "Now this is pod racing" Esparza
 * Youngling Jeremey Key
 * Jedi Knight Chad Ryan
 * Jedi Cowboy Sean O'Reilly
