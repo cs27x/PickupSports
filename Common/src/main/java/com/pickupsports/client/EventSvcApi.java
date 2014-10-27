@@ -10,7 +10,7 @@ import retrofit.http.*;
 import java.util.Collection;
 
 /**
- * This interface defines an API for a VideoSvc. The
+ * This interface defines an API for a EventSvc. The
  * interface is used to provide a contract for client/server
  * interactions. The interface is annotated with Retrofit
  * annotations so that clients can automatically convert the
@@ -25,28 +25,34 @@ public interface EventSvcApi {
 
     public static final String DURATION_PARAMETER = "duration";
 
-    // The path where we expect the VideoSvc to live
-    public static final String VIDEO_SVC_PATH = "/video";
+    // The path where we expect the EventSvc to live
+    public static final String EVENT_SVC_PATH = "/events";
 
     // The path to search videos by title
-    public static final String VIDEO_TITLE_SEARCH_PATH = VIDEO_SVC_PATH + "/search/findByName";
+//    public static final String EVENT_TITLE_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByName";
 
     // The path to search videos by title
-    public static final String VIDEO_DURATION_SEARCH_PATH = VIDEO_SVC_PATH + "/search/findByDurationLessThan";
+//    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByDurationLessThan";
 
-    @GET(VIDEO_SVC_PATH)
-    public Collection<Event> getVideoList();
+    @GET(EVENT_SVC_PATH)
+    public Collection<Event> getEventList();
 
-    @POST(VIDEO_SVC_PATH)
-    public Void addEvent(@Body Event v);
+    @POST(EVENT_SVC_PATH)
+    public Void addEvent(@Body Event event);
 
-    @DELETE(VIDEO_SVC_PATH + "/{id}")
-    public Void deleteVideo(@Path("id") long id);
+    @GET(EVENT_SVC_PATH + "/{id}")
+    public Event getEvent(@Path("id") long id);
 
-    @GET(VIDEO_TITLE_SEARCH_PATH)
-    public Collection<Event> findByTitle(@Query(TITLE_PARAMETER) String title);
+    @PUT(EVENT_SVC_PATH + "/{id}")
+    public Void editEvent(@Path("id") long id, @Body Event newEvent);
 
-    @GET(VIDEO_DURATION_SEARCH_PATH)
-    public Collection<Event> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);
+    @DELETE(EVENT_SVC_PATH + "/{id}")
+    public Void deleteEvent(@Path("id") long id);
+
+//    @GET(EVENT_TITLE_SEARCH_PATH)
+//    public Collection<Event> findByTitle(@Query(TITLE_PARAMETER) String title);
+
+//    @GET(EVENT_DURATION_SEARCH_PATH)
+//    public Collection<Event> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);
 
 }

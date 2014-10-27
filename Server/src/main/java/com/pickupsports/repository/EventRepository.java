@@ -26,7 +26,7 @@ import java.util.Collection;
 // 4. Send search requests to our findByXYZ methods to /video/search/findByXYZ
 //    (e.g., /video/search/findByName?title=Foo)
 //
-@RepositoryRestResource(path = EventSvcApi.VIDEO_SVC_PATH)
+@RepositoryRestResource(path = EventSvcApi.EVENT_SVC_PATH)
 public interface EventRepository extends CrudRepository<Event, Long> {
 
     // Find all videos with a matching title (e.g., Video.name)
