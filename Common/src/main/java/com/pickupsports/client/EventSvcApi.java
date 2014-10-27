@@ -21,7 +21,7 @@ import java.util.Collection;
  */
 public interface EventSvcApi {
 
-    public static final String TITLE_PARAMETER = "title";
+    public static final String SPORT_PARAMETER = "sport";
 
     public static final String DURATION_PARAMETER = "duration";
 

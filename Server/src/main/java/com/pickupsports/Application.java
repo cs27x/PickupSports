@@ -1,11 +1,17 @@
 package com.pickupsports;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+import com.mangofactory.swagger.plugin.EnableSwagger;
+import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import com.pickupsports.json.ResourcesMapper;
 import com.pickupsports.repository.Event;
 import com.pickupsports.repository.EventRepository;
+import com.wordnik.swagger.model.ApiInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -34,7 +40,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 // find any Controllers or other components that are part of our applciation.
 // Any class in this package that is annotated with @Controller is going to be
 // automatically discovered and connected to the DispatcherServlet.
-@ComponentScan
+@ComponentScan("com.pickupsports")
+@EnableSwagger
 public class Application extends RepositoryRestMvcConfiguration {
 
     // Tell Spring to launch our app!
@@ -68,6 +75,32 @@ public class Application extends RepositoryRestMvcConfiguration {
     protected void configureRepositoryRestConfiguration(
             RepositoryRestConfiguration config) {
         config.exposeIdsFor(Event.class);
+    }
+
+
+    private SpringSwaggerConfig springSwaggerConfig;
+
+    @Autowired
+    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
+        this.springSwaggerConfig = springSwaggerConfig;
+    }
+
+    @Bean //Don't forget the @Bean annotation
+    public SwaggerSpringMvcPlugin customImplementation(){
+        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
+                .apiInfo(apiInfo())
+                .includePatterns(".*pet.*");
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "PickupSports API",
+                "PickupSports API Description",
+                "PickupSports API terms of service",
+                "PickupSports API Contact Email",
+                "PickupSports API Licence Type",
+                "PickupSports API License URL"
+        );
     }
 
 }

@@ -29,19 +29,19 @@ import java.util.Collection;
 @RepositoryRestResource(path = EventSvcApi.EVENT_SVC_PATH)
 public interface EventRepository extends CrudRepository<Event, Long> {
 
-    // Find all videos with a matching title (e.g., Video.name)
-    public Collection<Event> findByName(
+    // Find all events with a matching sport (e.g., Event.sport)
+    public Collection<Event> findBySport(
             // The @Param annotation tells Spring Data Rest which HTTP request
             // parameter it should use to fill in the "title" variable used to
             // search for Videos
-            @Param(EventSvcApi.TITLE_PARAMETER) String title);
+            @Param(EventSvcApi.SPORT_PARAMETER) String sport);
 
-    // Find all videos that are shorter than a specified duration
-    public Collection<Event> findByDurationLessThan(
-            // The @Param annotation tells tells Spring Data Rest which HTTP request
-            // parameter it should use to fill in the "duration" variable used to
-            // search for Videos
-            @Param(EventSvcApi.DURATION_PARAMETER) long maxduration);
+//    Find all videos that are shorter than a specified duration
+//    public Collection<Event> findByDurationLessThan(
+//            // The @Param annotation tells tells Spring Data Rest which HTTP request
+//            // parameter it should use to fill in the "duration" variable used to
+//            // search for Videos
+//            @Param(EventSvcApi.DURATION_PARAMETER) long maxduration);
 
 	/*
 	 * See: http://docs.spring.io/spring-data/jpa/docs/1.3.0.RELEASE/reference/html/jpa.repositories.html
