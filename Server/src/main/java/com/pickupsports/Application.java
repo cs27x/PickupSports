@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -77,13 +78,8 @@ public class Application extends RepositoryRestMvcConfiguration {
         config.exposeIdsFor(Event.class);
     }
 
-
-    private SpringSwaggerConfig springSwaggerConfig;
-
     @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-        this.springSwaggerConfig = springSwaggerConfig;
-    }
+    private SpringSwaggerConfig springSwaggerConfig;
 
     @Bean //Don't forget the @Bean annotation
     public SwaggerSpringMvcPlugin customImplementation(){
