@@ -296,4 +296,3 @@ paths:
           description: Event with given ID does not exist
         500:
           description: Server error
-        
