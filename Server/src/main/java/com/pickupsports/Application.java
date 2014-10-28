@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -41,11 +40,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 // find any Controllers or other components that are part of our applciation.
 // Any class in this package that is annotated with @Controller is going to be
 // automatically discovered and connected to the DispatcherServlet.
-@ComponentScan("com.pickupsports")
+
 @EnableSwagger
+@ComponentScan
 public class Application extends RepositoryRestMvcConfiguration {
 
     // Tell Spring to launch our app!
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -78,24 +79,28 @@ public class Application extends RepositoryRestMvcConfiguration {
         config.exposeIdsFor(Event.class);
     }
 
-    @Autowired
     private SpringSwaggerConfig springSwaggerConfig;
 
+    @Autowired
+    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
+        this.springSwaggerConfig = springSwaggerConfig;
+    }
+
     @Bean //Don't forget the @Bean annotation
-    public SwaggerSpringMvcPlugin customImplementation(){
+    public SwaggerSpringMvcPlugin customImplementation() {
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-                .apiInfo(apiInfo())
-                .includePatterns(".*pet.*");
+                .apiInfo(apiInfo());
+//                .includePatterns(".*events.*");
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "PickupSports API",
-                "PickupSports API Description",
-                "PickupSports API terms of service",
-                "PickupSports API Contact Email",
-                "PickupSports API Licence Type",
-                "PickupSports API License URL"
+                "API for the PickupSports app",
+                "Terms?",
+                "vanderbilt.edu",
+                "Apache 2.0",
+                "vanderbilt.edu"
         );
     }
 
