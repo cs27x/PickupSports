@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple object to represent an event and its URL for viewing.
@@ -40,7 +40,7 @@ public class Event {
     private String location;
 
     @JsonSerialize(using = DateSerializer.class)
-    private Calendar time;
+    private Date time;
     private boolean free;
 
 
@@ -50,7 +50,7 @@ public class Event {
     
     public Event(String eventName, String sport, String description, long max_attendance,
                  String skillLevel, String equipment, String location,
-                 Calendar time, boolean free) {
+                 Date time, boolean free) {
         this();
         this.eventName = eventName;
         this.sport = sport;
@@ -74,7 +74,7 @@ public class Event {
 	   	this.skillLevel = "";
 	   	this.equipment = equipment;
 	   	this.location = "";
-	   	this.time = Calendar.getInstance();
+	   	this.time = new Date();
 	   	this.free = true;
 	}
 
@@ -160,11 +160,11 @@ public class Event {
         this.location = location;
     }
 
-    public Calendar getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Calendar time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
