@@ -1,13 +1,15 @@
+# Authored by Michael Esparza on Oct. 27 2014
+# Contributors: Clark Perkins
+# Swagger
 # Example YAML for the bare minimum of required elements
 swagger: '2.0'
-
 
 # This is you document information section
 info:
   version: "0.0.1"
   title: PickupSports
   description: Schedule your sports, PUGs, and scrims smarter with PickupSports!
-
+host: please.help.nfl
 # Describe your paths here
 paths:
 
