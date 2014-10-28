@@ -27,12 +27,6 @@ paths:
       parameters:
 
         # A parameter that is in query and required
-        - name: size
-          in: query
-          description: Size of array.
-          required: true
-          type: number
-          format: double
         - name: sport
           in: query
           description: Name of the sport.
@@ -112,7 +106,6 @@ paths:
           description: There is an error with the request.
         500: 
           description: Server error.
-  /events/get:
     get:
       summary: Retrieve event with unique id. 
       description: Events endpoint gives information about a unique sporting event. Response includes unique id + details for the given event. 
@@ -277,40 +270,3 @@ paths:
           description: Event with given ID does not exist
         500: 
           description: Server error
-          
-          # A schema describes your response object shape.
-          # Use JSON Schema format
-definitions:
-  Error:
-    properties:
-      code:
-        type: integer
-        format: int32
-      message:
-        type: string
-      fields:
-        type: string
-  SportEvent:
-    schema: 
-      title: SportEvent
-    properties:
-      id: 
-        type: integer
-        format: int64
-      sport:
-        type: string
-      attendance:
-        type: integer
-      skill_level:
-        type: integer
-      equipment:
-        type: boolean
-      location:
-        type: string
-      time:
-        type: string
-      description: 
-        type: string
-      free:
-        type: boolean
-        
