@@ -5,6 +5,8 @@ package com.pickupsports.repository;
  *
  */
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.google.common.base.Objects;
 
 import javax.persistence.Entity;
@@ -34,6 +36,7 @@ public class Event {
     private String equipment;
     private String location;
 
+    @JsonSerialize(using = DateSerializer.class)
     private Date time;
     private boolean free;
 

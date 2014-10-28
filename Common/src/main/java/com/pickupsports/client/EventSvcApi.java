@@ -29,7 +29,7 @@ public interface EventSvcApi {
     public static final String EVENT_SVC_PATH = "/events";
 
     // The path to search videos by title
-//    public static final String EVENT_TITLE_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByName";
+    public static final String EVENT_SPORT_SEARCH_PATH = EVENT_SVC_PATH + "/search/findBySport";
 
     // The path to search videos by title
 //    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByDurationLessThan";
@@ -49,8 +49,8 @@ public interface EventSvcApi {
     @DELETE(EVENT_SVC_PATH + "/{id}")
     public Void deleteEvent(@Path("id") long id);
 
-//    @GET(EVENT_TITLE_SEARCH_PATH)
-//    public Collection<Event> findByTitle(@Query(TITLE_PARAMETER) String title);
+    @GET(EVENT_SPORT_SEARCH_PATH)
+    public Collection<Event> findBySport(@Query(SPORT_PARAMETER) String sport);
 
 //    @GET(EVENT_DURATION_SEARCH_PATH)
 //    public Collection<Event> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);
