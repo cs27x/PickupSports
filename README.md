@@ -72,7 +72,7 @@ PickupSports
 6. After a feature is completed, the commit log will indicate which user story was being worked on. All user stories will be a Github issue and when one is completed we will close out the issue.
 7. We will use javadoc comments
 8. We will decide on 5 user stories per build cycle to complete.
-9. We will communicate when Master Justin rings the gong and we recieve smoke signals from Gondor (aka the backend team). When Theodin sounds the hord of Rohan we will stop working. We will also use GroupMe.
+9. We will communicate when Master Justin rings the gong and we recieve smoke signals from Gondor (aka the backend team). When Theodin sounds the horn of Rohan we will stop working. We will also use GroupMe.
 10. We will give others our application and ask them to try it out. Then they will tell us what stinks and we will change it.
 11. We will divy up the work so that people who have heavy schedules can work less when they have other class work and vice versa.
 12. The riskiest parts of this assignment is setting up a server which most of us have never done. We will all be dressed in risky business atire (jackets and tighty whities).

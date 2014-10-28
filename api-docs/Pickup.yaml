@@ -1,0 +1,298 @@
+# Example YAML for the bare minimum of required elements
+swagger: '2.0'
+
+
+# This is you document information section
+info:
+  version: "0.0.1"
+  title: PickupSports
+  description: Schedule your sports, PUGs, and scrims smarter with PickupSports!
+
+# Describe your paths here
+paths:
+
+  # This is a path endpoint
+  /events:
+
+    # This is an HTTP operation
+    post:
+
+      # Describe this verb here. Note: you can use markdown
+      summary: Adds/updates information about an event. 
+      description: |
+        Adds/updates information about an event's details such as sport, time, location, etc. 
+
+
+      # This is array of this verbs parameters:
+      parameters:
+
+        # A parameter that is in query and required
+        - name: sport
+          in: query
+          description: Name of the sport.
+          required: true
+          type: string
+        - name: attendance
+          in: query
+          description: Number of people currently commited to attending.
+          required: true
+          type: number
+          format: integer
+        - name: skill_level
+          in: query
+          description: Skill level of event (beginner, advanced, expert).
+          required: true
+          type: number
+          format: integer
+        - name: equipment
+          in: query
+          description: Equipment needed for event.
+          required: true
+          type: string
+        - name: location
+          in: query
+          description: Address or location of event.
+          required: true
+          type: string
+
+
+      # Expected responses for this verb:
+      tags:
+        - Sports
+      responses:
+        default:
+          description: Unexpected error
+          schema:
+            type: array
+            items:
+              title: Error
+              type: object
+              properties:
+                code:
+                  type: integer
+                  format: int32
+                message:
+                  type: string
+                fields:
+                  type: string
+        # Response code
+        201:
+          description: Successful response with an empty body.
+          schema:
+            type: array
+            items:
+              title: Sport
+              type: object
+              properties:
+                id:
+                  type: string
+                sport: 
+                  type: string
+                attendance:
+                  type: integer
+                skill_level:
+                  type: integer
+                equipment:
+                  type: boolean
+                location: 
+                  type: string
+                time:
+                  type: string
+                description: 
+                  type: string
+                free:
+                  type: boolean
+        400: 
+          description: There is an error with the request.
+        500: 
+          description: Server error.
+
+    get:
+      summary: Retrieve event with unique id. 
+      description: Events endpoint gives information about a unique sporting event. Response includes unique id + details for the given event.
+
+      tags:
+        - Estimates
+      responses:
+        200:
+          description: Sport event array
+          schema:
+            type: array
+            items:
+              title: Sport
+              type: object
+              properties:
+                id:
+                  type: string
+                sport: 
+                  type: string
+                attendance:
+                  type: integer
+                skill_level:
+                  type: integer
+                equipment:
+                  type: boolean
+                location: 
+                  type: string
+                time:
+                  type: string
+                description: 
+                  type: string
+                free:
+                  type: boolean
+        400:
+          description: Error with the request
+        500: 
+          description: Server error
+
+  /events/{id}:
+    get:
+      summary: Retrieve event with unique id. 
+      description: Get event using unique id. 
+      operationId: findEventByID
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of event to fetch
+          required: true
+          type: integer
+          format: int64
+
+      tags:
+        - Estimates
+      responses:
+        200:
+          description: Sport event array with given ID if it exists. 
+          schema:
+            type: array
+            items:
+              title: Sport
+              type: object
+              properties:
+                id:
+                  type: string
+                sport: 
+                  type: string
+                attendance:
+                  type: integer
+                skill_level:
+                  type: integer
+                equipment:
+                  type: boolean
+                location: 
+                  type: string
+                time:
+                  type: string
+                description: 
+                  type: string
+                free:
+                  type: boolean
+        400:
+          description: Bad request
+        404: 
+          description: Event with given ID does not exist
+        500: 
+          description: Server error
+
+    put:
+      summary: Edit event with unique id.
+      description: Edit event using unique id.
+      operationId: findEventByID
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: ID of event to fetch
+          required: true
+          type: integer
+          format: int64
+        - name: sport
+          in: query
+          description: Name of the sport.
+          required: true
+          type: string
+        - name: attendance
+          in: query
+          description: Number of people currently commited to attending.
+          required: true
+          type: number
+          format: integer
+        - name: skill_level
+          in: query
+          description: Skill level of event (beginner, advanced, expert).
+          required: true
+          type: number
+          format: integer
+        - name: equipment
+          in: query
+          description: Equipment needed for event.
+          required: true
+          type: string
+        - name: location
+          in: query
+          description: Address or location of event.
+          required: true
+          type: string
+
+      tags:
+        - Estimates
+      responses:
+        200:
+          description: Sport event array with given ID if it exists.
+          schema:
+            type: array
+            items:
+              title: Sport
+              type: object
+              properties:
+                id:
+                  type: string
+                sport:
+                  type: string
+                attendance:
+                  type: integer
+                skill_level:
+                  type: integer
+                equipment:
+                  type: boolean
+                location:
+                  type: string
+                time:
+                  type: string
+                description:
+                  type: string
+                free:
+                  type: boolean
+        400:
+          description: Bad request
+        404:
+          description: Event with given ID does not exist
+        500:
+          description: Server error
+
+    delete:
+      summary: Delete event with unique id.
+      description: delete event using unique id.
+      operationId: deleteEventByID
+      parameters:
+        - name: id
+          in: path
+          description: ID of event to fetch
+          required: true
+          type: integer
+          format: int64
+
+      tags:
+        - Estimates
+      responses:
+        200:
+          description: Sport event array with given ID if it exists.
+        400:
+          description: Bad request
+        404:
+          description: Event with given ID does not exist
+        500:
+          description: Server error
