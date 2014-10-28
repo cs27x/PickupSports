@@ -11,7 +11,7 @@ PickupSports
 * Jedi Cowboy Sean O'Reilly
 * Yoda Cameron Ridgewell
 * Darth Aston King
-* Han "Han Brolo" Solo
+* Han "Han Brolo" Solo Crowlo
 
 
 ### User Stories
