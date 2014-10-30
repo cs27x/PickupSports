@@ -41,7 +41,7 @@ public class TestUtils {
     }
 
     public static Event randomEvent() {
-        return new Event(
+        return new Event("basketball",
                 randomEventSport(),
                 randomEventDescription(),
                 randomEventAttendance(),
