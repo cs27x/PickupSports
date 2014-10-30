@@ -2,6 +2,7 @@ package com.pickupsports.client;
 
 /**
  * Created by clarkperkins on 10/23/14.
+ *
  */
 
 import com.pickupsports.repository.Event;
@@ -22,8 +23,6 @@ import java.util.Collection;
 public interface EventSvcApi {
 
     public static final String SPORT_PARAMETER = "sport";
-
-    public static final String DURATION_PARAMETER = "duration";
 
     // The path where we expect the EventSvc to live
     public static final String EVENT_SVC_PATH = "/events";

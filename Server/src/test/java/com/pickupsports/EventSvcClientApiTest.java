@@ -1,16 +1,16 @@
 package com.pickupsports;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.pickupsports.client.EventSvcApi;
+import com.pickupsports.repository.Event;
+import org.junit.Before;
+import org.junit.Test;
+import retrofit.RestAdapter;
+import retrofit.RestAdapter.LogLevel;
 
 import java.util.Collection;
 
-import com.pickupsports.client.EventSvcApi;
-import com.pickupsports.repository.Event;
-import org.junit.Test;
-
-import retrofit.RestAdapter;
-import retrofit.RestAdapter.LogLevel;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -22,13 +22,23 @@ import retrofit.RestAdapter.LogLevel;
  */
 public class EventSvcClientApiTest {
 
-    private final String TEST_URL = "http://localhost:8080";
+    private EventSvcApi eventService;
 
-    private EventSvcApi eventService = new RestAdapter.Builder()
-            .setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL).build()
-            .create(EventSvcApi.class);
+    private Event event;
 
-    private Event event = TestUtils.randomEvent();
+    @Before
+    public void setUp() throws Exception {
+
+        final String TEST_URL = "http://localhost:8080";
+
+        eventService = new RestAdapter.Builder()
+                .setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL)
+                .build()
+                .create(EventSvcApi.class);
+
+        event = TestUtils.randomEvent();
+
+    }
 
     /**
      * This test creates a Event, adds the Event to the EventSvc, and then
