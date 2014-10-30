@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.hateoas.Resources;
 
@@ -107,6 +108,7 @@ public class ResourcesMapper extends ObjectMapper {
         SimpleModule module = new SimpleModule();
         module.addSerializer(serializer);
         registerModule(module);
+        configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
     }
 

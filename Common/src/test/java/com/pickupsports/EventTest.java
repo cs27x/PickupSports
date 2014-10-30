@@ -17,7 +17,9 @@ public class EventTest {
     public void setUp() throws Exception {
         Date time = new Date();
 
-        this.event1_ = new Event("basketball",
+        this.event1_ = new Event(
+                "name",
+                "basketball",
                 "blah",
                 10,
                 "level",
@@ -26,7 +28,9 @@ public class EventTest {
                 time,
                 true);
 
-        this.event2_ = new Event("basketball",
+        this.event2_ = new Event(
+                "name",
+                "basketball",
                 "blah",
                 10,
                 "level",
