@@ -1,11 +1,14 @@
 package com.pickupsports;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.Event;
 import org.junit.Before;
 import org.junit.Test;
 import retrofit.RestAdapter;
 import retrofit.RestAdapter.LogLevel;
+import retrofit.converter.GsonConverter;
 
 import java.util.Collection;
 
@@ -26,13 +29,19 @@ public class EventSvcClientApiTest {
 
     private Event event;
 
-    @Before
+
     public void setUp() throws Exception {
 
         final String TEST_URL = "http://localhost:8080";
 
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm")
+                .create();
+
         eventService = new RestAdapter.Builder()
-                .setEndpoint(TEST_URL).setLogLevel(LogLevel.FULL)
+                .setEndpoint(TEST_URL)
+                .setConverter(new GsonConverter(gson))
+                .setLogLevel(LogLevel.FULL)
                 .build()
                 .create(EventSvcApi.class);
 

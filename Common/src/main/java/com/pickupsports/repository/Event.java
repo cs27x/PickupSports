@@ -185,8 +185,6 @@ public class Event {
                 equipment, location, time, free);
     }
 
-
-
     /**
      * Two Events are considered equal if they have exactly the same values for
      * all their fields
