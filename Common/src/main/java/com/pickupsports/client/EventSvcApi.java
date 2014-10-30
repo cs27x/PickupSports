@@ -25,31 +25,31 @@ public interface EventSvcApi {
     public static final String SPORT_PARAMETER = "sport";
 
     // The path where we expect the EventSvc to live
-    public static final String EVENT_SVC_PATH = "/events";
+    public static final String EVENT_SVC_PATH = "/events/";
 
     // The path to search videos by title
-    public static final String EVENT_SPORT_SEARCH_PATH = EVENT_SVC_PATH + "/search/findBySport";
+    public static final String EVENT_SPORT_SEARCH_PATH = EVENT_SVC_PATH + "?sport=" + SPORT_PARAMETER;
 
     // The path to search videos by title
-//    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByDurationLessThan";
+//    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "search/findByDurationLessThan";
 
-    @GET(EVENT_SVC_PATH)
+    @GET(EVENT_SVC_PATH + "?format=json")
     public Collection<Event> getEventList();
 
-    @POST(EVENT_SVC_PATH)
+    @POST(EVENT_SVC_PATH + "?format=json")
     public Void addEvent(@Body Event event);
 
-    @GET(EVENT_SVC_PATH + "/{id}")
+    @GET(EVENT_SVC_PATH + "/{id}" + "?format=json")
     public Event getEvent(@Path("id") long id);
 
-    @PUT(EVENT_SVC_PATH + "/{id}")
+    @PUT(EVENT_SVC_PATH + "/{id}" + "?format=json")
     public Void editEvent(@Path("id") long id, @Body Event newEvent);
 
-    @DELETE(EVENT_SVC_PATH + "/{id}")
+    @DELETE(EVENT_SVC_PATH + "/{id}" + "?format=json")
     public Void deleteEvent(@Path("id") long id);
 
-    @GET(EVENT_SPORT_SEARCH_PATH)
-    public Collection<Event> findBySport(@Query(SPORT_PARAMETER) String sport);
+    @GET(EVENT_SPORT_SEARCH_PATH + "&format=json")
+    public Collection<Event> findBySport(@Path(SPORT_PARAMETER) String sport);
 
 //    @GET(EVENT_DURATION_SEARCH_PATH)
 //    public Collection<Event> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);

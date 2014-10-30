@@ -5,14 +5,12 @@ package com.pickupsports.repository;
  *
  */
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.base.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import java.util.Date;
 
 /**
@@ -194,7 +192,8 @@ public class Event {
         if (obj instanceof Event) {
             Event other = (Event) obj;
             // Google Guava provides great utilities for equals too!
-            return Objects.equal(sport, other.sport)
+            return Objects.equal(eventName, other.eventName)
+                    && Objects.equal(sport, other.sport)
                     && Objects.equal(description, other.description)
                     && attendance == other.attendance
                     && Objects.equal(skillLevel, other.skillLevel)
@@ -207,5 +206,10 @@ public class Event {
         }
     }
 
+    @Override
+    public String toString() {
+        return eventName + " / " + sport + " / " + description + " / " + attendance + " / " + skillLevel + " / "
+                + equipment + " / " + location + " / " + time + " / " + free;
+    }
 }
 

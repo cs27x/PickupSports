@@ -109,7 +109,7 @@ public class ResourcesMapper extends ObjectMapper {
         module.addSerializer(serializer);
         registerModule(module);
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
+        setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH));
     }
 
 
