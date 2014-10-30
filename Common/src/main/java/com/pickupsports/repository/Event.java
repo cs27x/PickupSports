@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import java.util.Date;
 
 /**
@@ -25,10 +26,12 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id = -1;
 
+    private String eventName;
     private String sport;
     private String description;
 
     private long attendance;
+    private long max_attendance;
     private String skillLevel;
 
     private String equipment;
@@ -41,20 +44,36 @@ public class Event {
     public Event() {
         super();
     }
-
-    public Event(String sport, String description, long attendance,
+    
+    public Event(String eventName, String sport, String description, long max_attendance,
                  String skillLevel, String equipment, String location,
                  Date time, boolean free) {
         this();
+        this.eventName = eventName;
         this.sport = sport;
         this.description = description;
-        this.attendance = attendance;
+        this.setMax_attendance(max_attendance);
+        this.attendance = 0;	
         this.skillLevel = skillLevel;
         this.equipment = equipment;
         this.location = location;
         this.time = time;
         this.free = free;
     }
+    
+    public Event(String eventName, String sport, String description, long max_attendance, 
+    		String equipment) {
+    	this();
+    	this.eventName = eventName;
+    	this.sport = sport;
+    	this.description = description;
+    	this.attendance = 0;
+	   	this.skillLevel = "";
+	   	this.equipment = equipment;
+	   	this.location = "";
+	   	this.time = new Date();
+	   	this.free = true;
+	}
 
     public long getId() {
         return id;
@@ -64,7 +83,15 @@ public class Event {
         this.id = id;
     }
 
-    public String getSport() {
+    public String getEventName() {
+		return eventName;
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public String getSport() {
         return sport;
     }
 
@@ -86,6 +113,24 @@ public class Event {
 
     public void setAttendance(long attendance) {
         this.attendance = attendance;
+    }
+    
+    public long getMax_attendance() {
+		return max_attendance;
+	}
+
+	public void setMax_attendance(long max_attendance) {
+		this.max_attendance = max_attendance;
+	}
+
+	public void incrementAttendance()
+    {
+    	this.attendance ++;
+    }
+    
+    public void decrementAttendance()
+    {
+    	this.attendance --;
     }
 
     public String getSkillLevel() {
