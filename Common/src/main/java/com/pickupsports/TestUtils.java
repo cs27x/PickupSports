@@ -42,6 +42,7 @@ public class TestUtils {
 
     public static Event randomEvent() {
         return new Event(
+                randomEventName(),
                 randomEventSport(),
                 randomEventDescription(),
                 randomEventAttendance(),
@@ -50,6 +51,10 @@ public class TestUtils {
                 randomEventLocation(),
                 randomEventTime(),
                 randomEventFree());
+    }
+
+    public static String randomEventName() {
+        return UUID.randomUUID().toString();
     }
 
     public static String randomEventSport() {
