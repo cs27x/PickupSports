@@ -8,6 +8,7 @@
     <string name="notes_enter">Notes:</string>
     <string name="cancel">Cancel</string>
     <string name="add_event">Add Event</string>
+    <string name="event_dialog_title">Add an Event</string>
 
 
     <string-array name="sports">

@@ -13,7 +13,7 @@ public class AddEventDialog extends Dialog {
     public AddEventDialog(Context context) {
         super(context);
         this.setContentView(R.layout.add_event_dialog);
-        this.setTitle("Add an Event");
+        this.setTitle(context.getResources().getString(R.string.event_dialog_title));
 
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerSports);
