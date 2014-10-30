@@ -6,7 +6,6 @@ package com.pickupsports.repository;
  */
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.google.common.base.Objects;
 
 import javax.persistence.Entity;
@@ -39,7 +38,6 @@ public class Event {
     private String equipment;
     private String location;
 
-    @JsonSerialize(using = DateSerializer.class)
     private Date time;
     private boolean free;
 
@@ -190,8 +188,8 @@ public class Event {
 
 
     /**
-     * Two Videos are considered equal if they have exactly the same values for
-     * their name, url, and duration.
+     * Two Events are considered equal if they have exactly the same values for
+     * all their fields
      */
     @Override
     public boolean equals(Object obj) {
