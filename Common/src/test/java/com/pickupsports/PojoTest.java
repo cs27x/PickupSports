@@ -30,7 +30,7 @@ import com.openpojo.validation.test.impl.SetterTester;
  */
 public class PojoTest {
     // Configured for expectation, so we know when a class gets added or removed.
-    private static final int EXPECTED_CLASS_COUNT = 2;
+    private static final int EXPECTED_CLASS_COUNT = 1;
 
     // The package to com.magnum.videoup.test
     private static final String POJO_PACKAGE = Event.class.getPackage().getName();

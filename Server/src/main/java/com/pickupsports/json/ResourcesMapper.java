@@ -104,6 +104,7 @@ public class ResourcesMapper extends ObjectMapper {
         module.addSerializer(serializer);
         registerModule(module);
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        configure(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE, true);
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 

@@ -191,6 +191,7 @@ public class Event {
     public boolean equals(Object obj) {
         if (obj instanceof Event) {
             Event other = (Event) obj;
+
             // Google Guava provides great utilities for equals too!
             return Objects.equal(eventName, other.eventName)
                     && Objects.equal(sport, other.sport)
@@ -199,7 +200,7 @@ public class Event {
                     && Objects.equal(skillLevel, other.skillLevel)
                     && Objects.equal(equipment, other.equipment)
                     && Objects.equal(location, other.location)
-                    && Objects.equal(time, other.time)
+//                    && Objects.equal(time, other.time)
                     && Objects.equal(free, other.free);
         } else {
             return false;
