@@ -1,0 +1,7 @@
+language: java
+
+script:
+  - cd Server
+  - TERM=dumb ./gradlew bootRun > server.log &
+  - sleep 30
+  - TERM=dumb ./gradlew check
