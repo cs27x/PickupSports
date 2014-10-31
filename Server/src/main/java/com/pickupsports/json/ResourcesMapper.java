@@ -6,8 +6,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.hateoas.Resources;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 /**
  * <Begin long explanation of why this class was created...>
@@ -107,7 +105,6 @@ public class ResourcesMapper extends ObjectMapper {
         registerModule(module);
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH));
     }
 
 

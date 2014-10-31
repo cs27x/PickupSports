@@ -195,12 +195,12 @@ public class Event {
             return Objects.equal(eventName, other.eventName)
                     && Objects.equal(sport, other.sport)
                     && Objects.equal(description, other.description)
-                    && attendance == other.attendance
+                    && Objects.equal(attendance, other.attendance)
                     && Objects.equal(skillLevel, other.skillLevel)
                     && Objects.equal(equipment, other.equipment)
                     && Objects.equal(location, other.location)
                     && Objects.equal(time, other.time)
-                    && free == other.free;
+                    && Objects.equal(free, other.free);
         } else {
             return false;
         }

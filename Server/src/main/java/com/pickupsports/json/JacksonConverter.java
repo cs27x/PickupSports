@@ -25,10 +25,6 @@ public class JacksonConverter implements Converter {
 
     private final ObjectMapper objectMapper;
 
-    public JacksonConverter() {
-        this(new ObjectMapper());
-    }
-
     public JacksonConverter(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
@@ -36,9 +32,12 @@ public class JacksonConverter implements Converter {
     @Override public Object fromBody(TypedInput body, Type type) throws ConversionException {
         try {
             JavaType javaType = objectMapper.getTypeFactory().constructType(type);
+
             if (javaType.getRawClass().equals(Void.class)) {
+                // Don't try to serialize anything if it's a void type
                 return null;
             }
+
             return objectMapper.readValue(body.in(), javaType);
         } catch (JsonParseException e) {
             throw new ConversionException(e);
