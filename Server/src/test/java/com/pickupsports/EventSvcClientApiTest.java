@@ -60,15 +60,15 @@ public class EventSvcClientApiTest {
         // We should get back the event that we added above
         Collection<Event> events = eventService.getEventList();
         assertTrue(events.size() > 0);
+
         for (Event e : events) {
-            System.out.println(e.equals(event));
+            System.out.println(e);
         }
+        System.out.println(event);
 
         assertTrue(events.contains(event));
 
         for(Event e : events) {
-
-
             eventService.deleteEvent(e.getId());
         }
 

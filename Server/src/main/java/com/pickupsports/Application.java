@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
@@ -50,7 +51,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 // Any class in this package that is annotated with @Controller is going to be
 // automatically discovered and connected to the DispatcherServlet.
 
-@EnableSwagger
 @ComponentScan
 public class Application extends RepositoryRestMvcConfiguration {
 
@@ -86,50 +86,6 @@ public class Application extends RepositoryRestMvcConfiguration {
     protected void configureRepositoryRestConfiguration(
             RepositoryRestConfiguration config) {
         config.exposeIdsFor(Event.class);
-    }
-
-    private SpringSwaggerConfig springSwaggerConfig;
-
-    @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-        this.springSwaggerConfig = springSwaggerConfig;
-    }
-
-    @Bean //Don't forget the @Bean annotation
-    public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-                .apiInfo(apiInfo());
-//                .includePatterns(".*events.*");
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "PickupSports API",
-                "API for the PickupSports app",
-                "Terms?",
-                "vanderbilt.edu",
-                "Apache 2.0",
-                "vanderbilt.edu"
-        );
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(WEB_JAR_RESOURCE_PATTERNS)
-                .addResourceLocations(WEB_JAR_RESOURCE_LOCATION).setCachePeriod(0);
-    }
-
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix(WEB_JAR_VIEW_RESOLVER_PREFIX);
-        resolver.setSuffix(WEB_JAR_VIEW_RESOLVER_SUFFIX);
-        return resolver;
-    }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
     }
 
 }
