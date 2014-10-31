@@ -3,7 +3,7 @@ language: java
 script:
   - cd Server
   - TERM=dumb ./gradlew bootRun > server.log &
+  - SERVER_PID=$!
   - sleep 120
-  - ls
-  - cat server.log 
   - TERM=dumb ./gradlew check
+  - sudo kill $SERVER_PID
