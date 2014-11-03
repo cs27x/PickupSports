@@ -1,6 +1,11 @@
 package com.pickupsports;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.Event;
+import retrofit.RestAdapter;
+import retrofit.converter.GsonConverter;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -18,6 +23,19 @@ public class TestUtils {
             "10.0.2.2", // Android Emulator
             "192.168.56.1" // Genymotion
     };
+
+    public static EventSvcApi getEventService(String url) {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSX")
+                .create();
+
+        return new RestAdapter.Builder()
+                .setEndpoint(url)
+                .setConverter(new GsonConverter(gson))
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .build()
+                .create(EventSvcApi.class);
+    }
 
     public static String findTheRealLocalhostAddress() {
         String realLocalHost = null;

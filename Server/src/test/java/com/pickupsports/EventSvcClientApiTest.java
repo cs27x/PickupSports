@@ -34,16 +34,7 @@ public class EventSvcClientApiTest {
 
         final String TEST_URL = "http://localhost:8080";
 
-        Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSX")
-                .create();
-
-        eventService = new RestAdapter.Builder()
-                .setEndpoint(TEST_URL)
-                .setConverter(new GsonConverter(gson))
-                .setLogLevel(LogLevel.FULL)
-                .build()
-                .create(EventSvcApi.class);
+        eventService = TestUtils.getEventService(TEST_URL);
 
         event = TestUtils.randomEvent();
 
