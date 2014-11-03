@@ -5,6 +5,7 @@ package com.pickupsports.client;
  *
  */
 
+
 import com.pickupsports.repository.Event;
 import retrofit.http.*;
 
@@ -25,13 +26,13 @@ public interface EventSvcApi {
     public static final String SPORT_PARAMETER = "sport";
 
     // The path where we expect the EventSvc to live
-    public static final String EVENT_SVC_PATH = "/events";
+    public static final String EVENT_SVC_PATH = "/events/";
 
     // The path to search videos by title
-    public static final String EVENT_SPORT_SEARCH_PATH = EVENT_SVC_PATH + "/search/findBySport";
+    public static final String EVENT_SPORT_SEARCH_PATH = EVENT_SVC_PATH + "search/findBySport/";
 
     // The path to search videos by title
-//    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "/search/findByDurationLessThan";
+//    public static final String EVENT_DURATION_SEARCH_PATH = EVENT_SVC_PATH + "search/findByDurationLessThan";
 
     @GET(EVENT_SVC_PATH)
     public Collection<Event> getEventList();

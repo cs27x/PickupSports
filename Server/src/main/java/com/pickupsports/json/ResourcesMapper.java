@@ -1,16 +1,11 @@
 package com.pickupsports.json;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.hateoas.Resources;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 /**
  * <Begin long explanation of why this class was created...>
@@ -108,8 +103,10 @@ public class ResourcesMapper extends ObjectMapper {
         SimpleModule module = new SimpleModule();
         module.addSerializer(serializer);
         registerModule(module);
+        // Configure date serialization
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
+        configure(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE, true);
+        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
 
