@@ -4,5 +4,16 @@
     <string name="app_name">My Application</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="sport_selection">Sport:</string>
+    <string name="notes_enter">Notes:</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_event">Add Event</string>
+    <string name="event_dialog_title">Add an Event</string>
+
+
+    <string-array name="sports">
+        <item>Basketball</item>
+        <item>Football</item>
+    </string-array>
 
 </resources>
