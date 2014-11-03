@@ -1,7 +1,5 @@
 package com.pickupsports.myapplication;
 
-import org.magnum.mobilecloud.video.client.VideoSvcApi;
-
 import retrofit.RestAdapter;
 import retrofit.RestAdapter.LogLevel;
 import android.content.Context;
