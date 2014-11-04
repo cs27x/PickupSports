@@ -1,9 +1,6 @@
-package com.pickupsports.myapplication;
+package com.pickupsports.myapplications;
 
-import retrofit.RestAdapter;
-import retrofit.RestAdapter.LogLevel;
 import android.content.Context;
-import android.content.Intent;
 
 import com.pickupsports.TestUtils;
 import com.pickupsports.client.EventSvcApi;

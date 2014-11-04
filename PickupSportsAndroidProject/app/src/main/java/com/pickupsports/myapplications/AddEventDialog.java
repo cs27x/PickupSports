@@ -1,22 +1,16 @@
-package com.pickupsports.myapplication;
+package com.pickupsports.myapplications;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.Event;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 /**

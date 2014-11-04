@@ -1,4 +1,4 @@
-package com.pickupsports.myapplication;
+package com.pickupsports.myapplications;
 
 /*
 **
@@ -10,9 +10,7 @@ package com.pickupsports.myapplication;
 import java.util.concurrent.Callable;
 
 
-        import java.util.concurrent.Callable;
-
-        import android.os.AsyncTask;
+import android.os.AsyncTask;
         import android.util.Log;
 
 /**

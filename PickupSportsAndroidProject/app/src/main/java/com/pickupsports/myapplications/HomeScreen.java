@@ -1,30 +1,29 @@
-package com.pickupsports.myapplication;
+package com.pickupsports.myapplications;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.pickupsports.client.EventSvcApi;
+import com.pickupsports.repository.Event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.Callable;
 
 
 public class HomeScreen extends ListActivity {
 //    RestaurantList allEvents;
 //    RestaurantList filteredEvents;
-//    ListView listViewEvents;
+      ListView listViewEvents;
 //    Spinner spinnerSorting;
 //    Spinner spinnerFilter;
 //    ArrayAdapter<String> spinnerSortingAdapter;
@@ -37,7 +36,8 @@ public class HomeScreen extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
+        listViewEvents = (ListView) findViewById(android.R.id.list);
+        refreshVideos();
 //        allRestaurants = RestaurantList.getInstance(getResources());
 //
 //        setUpSpinners();
@@ -167,5 +167,42 @@ public class HomeScreen extends ListActivity {
 //        }
 //        setListAdapter(listViewAdapter);
 //        this.listViewRestaurants.deferNotifyDataSetChanged();
+    }
+
+    private void refreshVideos() {
+        final EventSvcApi svc = EventSvc.init("http://10.66.159.70:8080");
+
+        if (svc != null) {
+            CallableTask.invoke(new Callable<Collection<Event>>() {
+
+                @Override
+                public Collection<Event> call() throws Exception {
+                    return svc.getEventList();
+                }
+            }, new TaskCallback<Collection<Event>>() {
+
+                @Override
+                public void success(Collection<Event> result) {
+                    List<String> names = new ArrayList<String>();
+                    for (Event v : result) {
+                        names.add(v.getEventName());
+                    }
+                    listViewEvents.setAdapter(new ArrayAdapter<String>(
+                            HomeScreen.this,
+                            android.R.layout.simple_list_item_1, names));
+                }
+
+                @Override
+                public void error(Exception e) {
+                    Toast.makeText(
+                            HomeScreen.this,
+                            "Unable to fetch the video list, please login again.",
+                            Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(HomeScreen.this,
+                            HomeScreen.class));
+                }
+            });
+        }
     }
 }

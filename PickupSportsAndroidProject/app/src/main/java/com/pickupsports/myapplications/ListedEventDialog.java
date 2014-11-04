@@ -1,4 +1,4 @@
-package com.pickupsports.myapplication;
+package com.pickupsports.myapplications;
 
 import android.app.Dialog;
 import android.content.Context;

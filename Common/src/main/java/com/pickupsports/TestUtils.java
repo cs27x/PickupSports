@@ -26,7 +26,7 @@ public class TestUtils {
 
     public static EventSvcApi getEventService(String url) {
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSX")
+                .setDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS")
                 .create();
 
         return new RestAdapter.Builder()
