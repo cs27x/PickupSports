@@ -51,7 +51,7 @@ public class AddEventDialog extends Dialog {
             public void onClick(View view) {
                 String sport = "basketball";
                 sport = spinner.getSelectedItem().toString();
-                Event newEvent = createBasicEvent(name.getText().toString(), sport, notes.getText().toString());
+                Event newEvent = createBasicEvent(sport, notes.getText().toString(), name.getText().toString());
                 refreshVideos(newEvent);
                 AddEventDialog.this.dismiss();
             }
