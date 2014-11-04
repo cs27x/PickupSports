@@ -7,10 +7,11 @@
 
     <string name="action_new_event">New Event</string>
 
-    <string name="sport_selection">Sport:</string>
-    <string name="notes_enter">Notes:</string>
+    <string name="sport_selection">Sport: </string>
+    <string name="notes_enter">Notes: </string>
     <string name="cancel">Cancel</string>
     <string name="add_event">Add Event</string>
+    <string name="add_name">Event Name: </string>
     <string name="event_dialog_title">Add an Event</string>
 
 
