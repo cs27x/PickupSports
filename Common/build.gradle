@@ -11,6 +11,11 @@ war {
     version =  '0.1.0'
 }
 
+jar {
+    baseName = 'pickupsports-common'
+    version =  '0.1.0'
+}
+
 repositories {
     mavenCentral()
 }

@@ -7,7 +7,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
@@ -17,11 +17,18 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
 
+mainClassName = 'com.pickupsports.Application'
+
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 war {
-    baseName = 'server'
+    baseName = 'pickupsports-server'
+    version =  '0.1.0'
+}
+
+jar {
+    baseName = 'pickupsports-server'
     version =  '0.1.0'
 }
 
@@ -62,3 +69,5 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
+
+task stage(dependsOn: ['clean', 'bootRepackage'])
