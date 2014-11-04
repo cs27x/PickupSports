@@ -27,6 +27,7 @@ public class AddEventDialog extends Dialog {
         this.setTitle(context.getResources().getString(R.string.event_dialog_title));
 
         final EditText notes = (EditText) findViewById(R.id.EditTextAddNotes);
+        final EditText name = (EditText) findViewById(R.id.EditTextName);
         final Spinner spinner = (Spinner) findViewById(R.id.spinnerSports);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.sports, android.R.layout.simple_spinner_item);
@@ -50,7 +51,7 @@ public class AddEventDialog extends Dialog {
             public void onClick(View view) {
                 String sport = "basketball";
                 sport = spinner.getSelectedItem().toString();
-                Event newEvent = createBasicEvent(sport, notes.getText().toString());
+                Event newEvent = createBasicEvent(name.getText().toString(), sport, notes.getText().toString());
                 refreshVideos(newEvent);
                 AddEventDialog.this.dismiss();
             }
@@ -65,8 +66,8 @@ public class AddEventDialog extends Dialog {
      * @param description - the description of the event entered in the editText
      * @return - the created event
      */
-    private Event createBasicEvent(String sport, String description) {
-        return new Event(null, sport, description, 100, null);
+    private Event createBasicEvent(String sport, String description, String name) {
+        return new Event(name, sport, description, 100, null);
     }
 
     private void refreshVideos(final Event event) {
