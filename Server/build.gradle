@@ -70,4 +70,4 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
 
-task stage(dependsOn: ['bootRepackage'])
+task stage(dependsOn: ['installApp', 'bootRepackage'])
