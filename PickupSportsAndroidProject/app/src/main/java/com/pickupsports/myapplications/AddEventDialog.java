@@ -71,7 +71,7 @@ public class AddEventDialog extends Dialog {
     }
 
     private void refreshVideos(final Event event) {
-        final EventSvcApi svc = EventSvc.init("http://10.66.159.70:8080");
+        final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
         if (svc != null) {
             CallableTask.invoke(new Callable<Void>() {

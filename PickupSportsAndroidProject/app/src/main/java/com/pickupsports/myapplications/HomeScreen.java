@@ -3,9 +3,12 @@ package com.pickupsports.myapplications;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,6 +18,7 @@ import com.pickupsports.repository.Event;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -23,6 +27,7 @@ public class HomeScreen extends ListActivity {
 //    RestaurantList allEvents;
 //    RestaurantList filteredEvents;
       ListView listViewEvents;
+      Collection<Event> myEvents;
 //    Spinner spinnerSorting;
 //    Spinner spinnerFilter;
 //    ArrayAdapter<String> spinnerSortingAdapter;
@@ -37,6 +42,19 @@ public class HomeScreen extends ListActivity {
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);
         refreshVideos();
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Iterator<Event> iterator = myEvents.iterator();
+                for(int j = 0; j < i; j++) {
+                    iterator.next();
+                }
+                Event clickedEvent = iterator.next();
+                Log.i("help", clickedEvent.getEventName());
+                ListedEventDialog dialog = new ListedEventDialog(HomeScreen.this, clickedEvent);
+                dialog.show();
+            }
+        });
 //        allRestaurants = RestaurantList.getInstance(getResources());
 //
 //        setUpSpinners();
@@ -169,7 +187,7 @@ public class HomeScreen extends ListActivity {
     }
 
     private void refreshVideos() {
-        final EventSvcApi svc = EventSvc.init("http://10.66.159.70:8080");
+        final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
         if (svc != null) {
             CallableTask.invoke(new Callable<Collection<Event>>() {
@@ -183,6 +201,7 @@ public class HomeScreen extends ListActivity {
                 @Override
                 public void success(Collection<Event> result) {
                     List<String> names = new ArrayList<String>();
+                    myEvents = result;
                     for (Event v : result) {
                         names.add(v.getEventName());
                     }
