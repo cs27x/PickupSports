@@ -55,6 +55,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     compile "org.springframework.data:spring-data-rest-webmvc"
 
+    compile "javax.servlet:javax.servlet-api:3.0.+"
+
     compile "org.hsqldb:hsqldb"
 
     compile "com.google.guava:guava:17.0"
