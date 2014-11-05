@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.pickupsports.repository.Event;
@@ -14,7 +15,7 @@ import com.pickupsports.repository.Event;
  */
 public class ListedEventDialog extends Dialog{
 
-    // Create custom dialog for an event
+    // Create custom dialog for a listed event
     public ListedEventDialog(final Context c, final Event e)
     {
         super(c);
@@ -27,6 +28,15 @@ public class ListedEventDialog extends Dialog{
 
         TextView attendText = (TextView)findViewById(R.id.textViewAttendance);
         attendText.setText("Attendance: " + e.getAttendance());
+
+        TextView locationText = (TextView)findViewById(R.id.textViewLocation);
+        locationText.setText("Location: " + e.getLocation());
+
+        TextView timeText = (TextView)findViewById(R.id.textViewTime);
+        timeText.setText("Time: " + e.getTime());
+
+        EditText descriptionText = (EditText)findViewById(R.id.editTextNotes);
+        descriptionText.setText(e.getDescription());
 
 
         Button cancel = (Button)findViewById(R.id.buttonCancel);
