@@ -17,6 +17,7 @@ PickupSports
 ### User Stories
 
 1.  __Story__: As a user, I want to be able to create an event that people can join
+
     __Acceptance__:
     * "Create new event" option available in GUI
   
