@@ -22,6 +22,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Location"
+        android:id="@+id/textViewLocation"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time: "
+        android:id="@+id/textViewTime"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Notes:"
         android:id="@+id/textViewNotes"
         android:textSize="20sp"/>
@@ -31,7 +45,7 @@
         android:layout_height="120dp"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText" />
+        android:id="@+id/editTextNotes" />
 
     <LinearLayout
         android:orientation="horizontal"

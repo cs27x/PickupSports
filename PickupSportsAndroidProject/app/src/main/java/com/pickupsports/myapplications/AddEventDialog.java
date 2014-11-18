@@ -7,10 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 
 import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.Event;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 /**
@@ -28,11 +31,14 @@ public class AddEventDialog extends Dialog {
 
         final EditText notes = (EditText) findViewById(R.id.EditTextAddNotes);
         final EditText name = (EditText) findViewById(R.id.EditTextName);
-        final Spinner spinner = (Spinner) findViewById(R.id.spinnerSports);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+        final EditText location = (EditText) findViewById(R.id.EditTextLocation);
+        final Spinner sportsSpinner = (Spinner) findViewById(R.id.spinnerSports);
+        final TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+
+        ArrayAdapter<CharSequence> sportsAdapter = ArrayAdapter.createFromResource(context,
                 R.array.sports, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        sportsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sportsSpinner.setAdapter(sportsAdapter);
 
         Button cancel = (Button) findViewById(R.id.buttonCancelAdding);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +56,10 @@ public class AddEventDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 String sport = "basketball";
-                sport = spinner.getSelectedItem().toString();
-                Event newEvent = createBasicEvent(sport, notes.getText().toString(), name.getText().toString());
+                Date time = createDateFromTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+                sport = sportsSpinner.getSelectedItem().toString();
+                Event newEvent = createBasicEvent(sport, notes.getText().toString(),
+                        name.getText().toString(), time, location.getText().toString());
                 refreshVideos(newEvent);
                 AddEventDialog.this.dismiss();
             }
@@ -66,10 +74,31 @@ public class AddEventDialog extends Dialog {
      * @param description - the description of the event entered in the editText
      * @return - the created event
      */
-    private Event createBasicEvent(String sport, String description, String name) {
-        return new Event(name, sport, description, 100, null);
+    private Event createBasicEvent(String sport, String description, String name, Date time, String location) {
+        return new Event(name, sport, description, 100,
+                "skill level", "equipment", location, time, true);
     }
 
+    /**
+     * createDateFromTime-
+     * helper method that creates a date event from time values
+     *
+     * @param hour-    the hour to be used in the date event
+     * @param minutes- the minutes to be used in the date event
+     * @return- a date event that contains defaults except for the hour and minutes
+     */
+    private Date createDateFromTime(int hour, int minutes) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date newDate = calendar.getTime();
+        return newDate;
+    }
+
+    //refreshes video feed. Need to update this to occur after creation of an event
+    // as well as autoupdate when others create events or add refresh button.
     private void refreshVideos(final Event event) {
         final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
