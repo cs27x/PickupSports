@@ -67,13 +67,16 @@ PickupSports
     * User accounts with users
 12. __Story__: As a user, I want to be able to delete events that I have posted
     
-    __Acceptance__: Events have a delete button that removes them from the server
+    __Acceptance__: 
+    * Events have a delete button that removes them from the server
 13. __Story__: I want to be able to see an event after I post it
 
-    __Acceptance__: The event list refreshes when a new event is added.
+    __Acceptance__: 
+    * The event list refreshes when a new event is added.
 14. __Story__: As an event poster, I want my attendence numbers to reflect the users coming
 
-    __Acceptance__: A user can only increment the attendence field once.
+    __Acceptance__: 
+    * A user can only increment the attendence field once.
 
 
 ###Process
