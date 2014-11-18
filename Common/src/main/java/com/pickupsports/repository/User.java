@@ -1,21 +1,14 @@
 package com.pickupsports.repository;
 
-/**
- * Created by clarkperkins on 10/23/14.
- *
- */
-
-import com.google.common.base.Objects;
-
 import javax.persistence.Entity;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A simple object to represent an event and its URL for viewing.
+ * A simple class defining a User of the App
  *
- * @author jules
+ * @author Sean
  */
 @Entity
 public class User {
@@ -25,6 +18,10 @@ public class User {
     private Set<String> favorite_sports;
     private Set<Event> joined_events;
 
+    /**
+     * Constructs a User object with the users name
+     * @param n the name of the user
+     */
     public User(String n){
         name = n;
         attendance_rating = 0;
@@ -33,57 +30,94 @@ public class User {
         joined_events = new HashSet<Event>();
     }
 
+    /**
+     *
+     * @return name of the user
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     *
+     * @param attendance_rating new attendance rating for the user
+     */
     public void setAttendance_rating(int attendance_rating){
         this.attendance_rating = attendance_rating;
     }
 
+    /**
+     *
+     * @return users attendance rating
+     */
     public int getAttendance_rating(){
         return attendance_rating;
     }
 
+    /**
+     *
+     * @return users skill rating
+     */
     public int getSkill_rating() {
         return skill_rating;
     }
 
+    /**
+     *
+     * @param skill_rating new skill rating for the user
+     */
     public void setSkill_rating(int skill_rating) {
         this.skill_rating = skill_rating;
     }
 
+    /**
+     *
+     * @param sport sport to add to list of favorite sports
+     */
     public void addFavoriteSport(String sport){
         favorite_sports.add(sport);
     }
 
+    /**
+     * removes sport from favorite_sports
+     * @param sport sport to be removed
+     */
     public void removeFavoriteSport(String sport){
         favorite_sports.remove(sport);
     }
 
+    /**
+     * Determines whether a sport is in favorite_sports
+     * @param sport sport to be checked
+     * @return true if sport is in favorite_sports
+     */
     public boolean isFavoriteSport(String sport){
-        if(favorite_sports.contains(sport)){
-            return true;
-        }
-        return false;
+        return favorite_sports.contains(sport);
     }
 
+    /**
+     *
+     * @param e event to be joined
+     */
     public void joinEvent(Event e){
         joined_events.add(e);
     }
 
+    /**
+     *
+     * @param e event to be removed from list
+     */
     public void unJoinEvent(Event e){
         joined_events.remove(e);
     }
 
+    /**
+     *
+     * @param e event to be checked
+     * @return true if event is in the list, false otherwise
+     */
     public boolean isJoinedEvent(Event e){
-        if(joined_events.contains(e)){
-            return true;
-        }
-        return false;
+        return joined_events.contains(e);
     }
-
-
-
 }
 
