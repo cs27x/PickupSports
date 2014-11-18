@@ -17,8 +17,9 @@ PickupSports
 ### User Stories
 
 1.  __Story__: As a user, I want to be able to create an event that people can join
-  Acceptance:
-  * "Create new event" option available in GUI
+    __Acceptance__:
+    * "Create new event" option available in GUI
+  
 2. As a user, I want to be able to find other peoples events and say I am going.
   
   -App has the ability to search events and an option to say a user is attending
