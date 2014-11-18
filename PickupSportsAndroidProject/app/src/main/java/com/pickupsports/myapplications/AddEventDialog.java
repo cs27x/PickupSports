@@ -97,6 +97,8 @@ public class AddEventDialog extends Dialog {
         return newDate;
     }
 
+    //refreshes video feed. Need to update this to occur after creation of an event
+    // as well as autoupdate when others create events or add refresh button.
     private void refreshVideos(final Event event) {
         final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
