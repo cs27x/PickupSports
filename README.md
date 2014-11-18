@@ -61,22 +61,19 @@ PickupSports
 
     __Acceptance__:
     * Events have an optional field for event personal cost
-11. __Story__: As a frequent player, I want to be able to use a schedule to post numerous events. 
+11. __Story__: As a user, I want to be able to login.
 
     __Acceptance__:
-    * Option in "Create Event" that allows an event to be posted multiple times in a day, week, or month 
-12. __Story__: As a user I want to add a pickup game that I want to participate in to my calendar so that I don't forget.
+    * User accounts with users
+12. __Story__: As a user, I want to be able to delete events that I have posted
+    
+    __Acceptance__: Events have a delete button that removes them from the server
+13. __Story__: I want to be able to see an event after I post it
 
-    __Acceptance__:
-    * Export to calender button on event description
-13. __Story__: As a user I want to be notified when a pickup game is started near me and it is a sport I like
+    __Acceptance__: The event list refreshes when a new event is added.
+14. __Story__: As an event poster, I want my attendence numbers to reflect the users coming
 
-    __Acceptance__:
-    * Optional push notifications when favorited sports event criteria are starting near current location
-14. __Story__: As a user, I want to be able to login and have a rating based on my attendence and skill.
-
-    __Acceptance__:
-    * User accounts with ratings that are improved (or reduced) by other users
+    __Acceptance__: A user can only increment the attendence field once.
 
 
 ###Process
