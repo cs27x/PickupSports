@@ -35,6 +35,17 @@ public class ListedEventDialog extends Dialog{
         TextView locationText = (TextView)findViewById(R.id.textViewLocation);
         locationText.setText("Location: " + e.getLocation());
 
+        TextView costText = (TextView)findViewById(R.id.textViewCost);
+        if (e.isFree())
+        {
+            costText.setText("Cost: Free");
+        }
+        else
+        {
+            costText.setText("Cost: $$$");
+        }
+
+
         TextView timeText = (TextView)findViewById(R.id.textViewTime);
         timeText.setText("Time: " + e.getTime());
 
