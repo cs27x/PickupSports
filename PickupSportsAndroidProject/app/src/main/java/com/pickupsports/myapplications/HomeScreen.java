@@ -214,7 +214,7 @@ public class HomeScreen extends ListActivity {
                 public void error(Exception e) {
                     Toast.makeText(
                             HomeScreen.this,
-                            "Unable to fetch the video list, please login again.",
+                            "Unable to fetch the event list, please login again.",
                             Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(HomeScreen.this,
