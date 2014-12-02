@@ -32,6 +32,7 @@ public class AddEventDialog extends Dialog {
         final EditText notes = (EditText) findViewById(R.id.EditTextAddNotes);
         final EditText name = (EditText) findViewById(R.id.EditTextName);
         final EditText location = (EditText) findViewById(R.id.EditTextLocation);
+        final Spinner costSpinner = (Spinner) findViewById(R.id.spinnerCost);
         final Spinner sportsSpinner = (Spinner) findViewById(R.id.spinnerSports);
         final TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 
@@ -39,6 +40,11 @@ public class AddEventDialog extends Dialog {
                 R.array.sports, android.R.layout.simple_spinner_item);
         sportsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sportsSpinner.setAdapter(sportsAdapter);
+
+        ArrayAdapter<CharSequence> costAdapter = ArrayAdapter.createFromResource(context,
+                R.array.cost, android.R.layout.simple_spinner_item);
+        costAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        costSpinner.setAdapter(costAdapter);
 
         Button cancel = (Button) findViewById(R.id.buttonCancelAdding);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +62,19 @@ public class AddEventDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 String sport = "basketball";
+                String cost = "";
                 Date time = createDateFromTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute());
                 sport = sportsSpinner.getSelectedItem().toString();
+                cost = sportsSpinner.getSelectedItem().toString();
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
                         name.getText().toString(), time, location.getText().toString());
+                if (cost.equals("Free")) {
+                    newEvent.setFree(true);
+                }
+                else
+                {
+                    newEvent.setFree(false);
+                }
                 refreshVideos(newEvent);
                 AddEventDialog.this.dismiss();
             }

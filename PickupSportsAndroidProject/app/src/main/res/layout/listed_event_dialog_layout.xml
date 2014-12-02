@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Sport: "
         android:id="@+id/textViewSport"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:focusableInTouchMode="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,8 +23,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location"
+        android:text="Location: "
         android:id="@+id/textViewLocation"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cost: "
+        android:id="@+id/textViewCost"
         android:textSize="20sp"/>
 
     <TextView

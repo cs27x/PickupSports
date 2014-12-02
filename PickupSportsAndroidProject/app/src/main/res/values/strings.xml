@@ -16,8 +16,19 @@
 
 
     <string-array name="sports">
+        <item>Baseball</item>
         <item>Basketball</item>
+        <item>Bowling</item>
         <item>Football</item>
+        <item>Racquetball</item>
+        <item>Soccer</item>
+        <item>Softball</item>
+        <item>Tap Dancing</item>
+    </string-array>
+
+    <string-array name="cost">
+        <item>Free</item>
+        <item>$$$</item>
     </string-array>
 
 </resources>
