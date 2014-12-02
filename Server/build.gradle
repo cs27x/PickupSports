@@ -58,6 +58,7 @@ dependencies {
     compile "javax.servlet:javax.servlet-api:3.0.+"
 
     compile "org.hsqldb:hsqldb"
+    compile "postgresql:postgresql:9.0-801.jdbc4"
 
     compile "com.google.guava:guava:17.0"
     compile "org.apache.httpcomponents:httpclient:4.3.4"

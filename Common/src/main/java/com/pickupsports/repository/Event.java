@@ -7,11 +7,9 @@ package com.pickupsports.repository;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * A simple object to represent an event and its URL for viewing.
@@ -19,39 +17,62 @@ import java.util.Date;
  * @author jules
  */
 @Entity
+@Table(name="pickupsports_event")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private long id = -1;
 
+    @Column(name="event_name")
     private String eventName;
+
+    @Column(name="sport")
     private String sport;
+
+    @Column(name="description")
     private String description;
 
+    @Column(name="attendance")
     private long attendance;
-    private long max_attendance;
+
+    @Column(name="max_attendance")
+    private long maxAttendance;
+
+    @Column(name="skill_level")
     private String skillLevel;
 
+    @Column(name="equipment")
     private String equipment;
+
+    @Column(name="location")
     private String location;
 
+    @Column(name="time")
     private Date time;
+
+    @Column(name="free")
     private boolean free;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "pickupsports_event_users",
+            joinColumns = {@JoinColumn(name = "event_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private Set<User> users;
 
     public Event() {
         super();
     }
     
-    public Event(String eventName, String sport, String description, long max_attendance,
+    public Event(String eventName, String sport, String description, long maxAttendance,
                  String skillLevel, String equipment, String location,
                  Date time, boolean free) {
         this();
         this.eventName = eventName;
         this.sport = sport;
         this.description = description;
-        this.setMax_attendance(max_attendance);
+        this.maxAttendance = maxAttendance;
         this.attendance = 0;	
         this.skillLevel = skillLevel;
         this.equipment = equipment;
@@ -60,7 +81,7 @@ public class Event {
         this.free = free;
     }
     
-    public Event(String eventName, String sport, String description, long max_attendance, 
+    public Event(String eventName, String sport, String description, long maxAttendance,
     		String equipment) {
     	this();
     	this.eventName = eventName;
@@ -114,12 +135,12 @@ public class Event {
         this.attendance = attendance;
     }
     
-    public long getMax_attendance() {
-		return max_attendance;
+    public long getMaxAttendance() {
+		return maxAttendance;
 	}
 
-	public void setMax_attendance(long max_attendance) {
-		this.max_attendance = max_attendance;
+	public void setMaxAttendance(long maxAttendance) {
+		this.maxAttendance = maxAttendance;
 	}
 
 	public void incrementAttendance()
@@ -170,6 +191,14 @@ public class Event {
 
     public void setFree(boolean free) {
         this.free = free;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     /**

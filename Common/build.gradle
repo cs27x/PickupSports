@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compile "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
     compile "com.google.guava:guava:17.0"
     compile "com.squareup.retrofit:retrofit:1.6.1"
     compile "commons-io:commons-io:2.4"
