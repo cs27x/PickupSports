@@ -8,7 +8,7 @@
     <string name="sport_selection">Sport: </string>
     <string name="location_enter">Location: </string>
     <string name="time_enter">Time: </string>
-    <string name="notes_enter">Notes: </string>
+    <string name="notes_enter">Notes/Rules/Equipment Needed: </string>
     <string name="cancel">Cancel</string>
     <string name="add_event">Add Event</string>
     <string name="add_name">Event Name: </string>
