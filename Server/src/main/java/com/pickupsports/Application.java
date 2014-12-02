@@ -6,12 +6,17 @@ import com.pickupsports.repository.Event;
 import com.pickupsports.repository.EventRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.Properties;
 
 /**
  * Created by clarkperkins on 10/23/14.
@@ -70,6 +75,30 @@ public class Application extends RepositoryRestMvcConfiguration {
     protected void configureRepositoryRestConfiguration(
             RepositoryRestConfiguration config) {
         config.exposeIdsFor(Event.class);
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
+        sf.setDataSource(dataSource());
+        sf.setPackagesToScan("com.pickupsports.repository");
+
+        // Hibernate properties for generating DB schema
+        Properties hibernateProps = new Properties();
+        hibernateProps.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
+        hibernateProps.setProperty("hibernate.hbm2ddl.auto", "update");
+        hibernateProps.setProperty("hibernate.show_sql", "false");
+        sf.setHibernateProperties(hibernateProps);
+
+        return sf;
+    }
+
+    @Bean
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName("org.postgresql.Driver");
+        ds.setUrl("jdbc:"+System.getenv("DATABASE_URL"));
+        return ds;
     }
 
 }

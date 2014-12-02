@@ -22,6 +22,13 @@ import java.util.Collection;
  *
  */
 public interface EventSvcApi {
+    public static final String PASSWORD_PARAMETER = "password";
+
+	public static final String USERNAME_PARAMETER = "username";
+
+    public static final String LOGIN_PATH = "/login/";
+
+    public static final String LOGOUT_PATH = "/logout/";
 
     public static final String SPORT_PARAMETER = "sport";
 
