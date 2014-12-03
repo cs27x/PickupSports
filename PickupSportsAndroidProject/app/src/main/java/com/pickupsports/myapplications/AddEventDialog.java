@@ -2,7 +2,6 @@ package com.pickupsports.myapplications;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,7 +69,6 @@ public class AddEventDialog extends Dialog {
                 cost = sportsSpinner.getSelectedItem().toString();
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
                         name.getText().toString(), time, location.getText().toString(), skillLevel.getText().toString());
-                Log.d("test", newEvent.getSkillLevel());
                 if (cost.equals("Free")) {
                     newEvent.setFree(true);
                 }
