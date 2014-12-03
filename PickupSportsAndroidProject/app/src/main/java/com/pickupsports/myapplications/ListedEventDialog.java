@@ -35,6 +35,9 @@ public class ListedEventDialog extends Dialog{
         TextView locationText = (TextView)findViewById(R.id.textViewLocation);
         locationText.setText("Location: " + e.getLocation());
 
+        TextView skillLevelText = (TextView)findViewById(R.id.textViewSkillLevel);
+        skillLevelText.setText("Skill Level: " + e.getSkillLevel());
+
         TextView costText = (TextView)findViewById(R.id.textViewCost);
         if (e.isFree())
         {

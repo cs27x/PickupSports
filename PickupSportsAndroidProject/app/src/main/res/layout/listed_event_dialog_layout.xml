@@ -26,6 +26,12 @@
         android:text="Location: "
         android:id="@+id/textViewLocation"
         android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skill Level: "
+        android:id="@+id/textViewSkillLevel"
+        android:textSize="20sp"/>
 
     <TextView
         android:layout_width="wrap_content"
