@@ -32,6 +32,7 @@ public class AddEventDialog extends Dialog {
         final EditText notes = (EditText) findViewById(R.id.EditTextAddNotes);
         final EditText name = (EditText) findViewById(R.id.EditTextName);
         final EditText location = (EditText) findViewById(R.id.EditTextLocation);
+        final EditText skillLevel = (EditText) findViewById(R.id.EditTextSkillLevel);
         final Spinner costSpinner = (Spinner) findViewById(R.id.spinnerCost);
         final Spinner sportsSpinner = (Spinner) findViewById(R.id.spinnerSports);
         final TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
@@ -67,7 +68,7 @@ public class AddEventDialog extends Dialog {
                 sport = sportsSpinner.getSelectedItem().toString();
                 cost = sportsSpinner.getSelectedItem().toString();
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
-                        name.getText().toString(), time, location.getText().toString());
+                        name.getText().toString(), time, location.getText().toString(), skillLevel.getText().toString());
                 if (cost.equals("Free")) {
                     newEvent.setFree(true);
                 }
@@ -89,9 +90,9 @@ public class AddEventDialog extends Dialog {
      * @param description - the description of the event entered in the editText
      * @return - the created event
      */
-    private Event createBasicEvent(String sport, String description, String name, Date time, String location) {
+    private Event createBasicEvent(String sport, String description, String name, Date time, String location, String skillLevel) {
         return new Event(name, sport, description, 100,
-                "skill level", "equipment", location, time, true);
+               skillLevel, "equipment", location, time, true);
     }
 
     /**

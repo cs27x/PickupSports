@@ -7,6 +7,7 @@
     <string name="action_new_event">New Event</string>
     <string name="sport_selection">Sport: </string>
     <string name="location_enter">Location: </string>
+    <string name="skill_level_enter">Skill Level: </string>
     <string name="time_enter">Time: </string>
     <string name="notes_enter">Notes/Rules/Equipment Needed: </string>
     <string name="cancel">Cancel</string>
