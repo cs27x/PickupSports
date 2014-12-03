@@ -71,9 +71,9 @@ public class AddEventDialog extends Dialog {
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
                         name.getText().toString(), time, location.getText().toString(), skillLevel.getText().toString());
 
-                SharedPreferences.Editor editor = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0).edit();
-                editor.putString("event" + newEvent.getEventName(), newEvent.toString());
-                editor.commit();
+                //SharedPreferences.Editor editor = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0).edit();
+                //editor.putString("event" + newEvent.getEventName(), newEvent.toString());
+                //editor.commit();
                 if (cost.equals("Free")) {
                     newEvent.setFree(true);
                 }

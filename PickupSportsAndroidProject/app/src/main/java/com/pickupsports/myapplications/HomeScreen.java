@@ -41,7 +41,7 @@ public class HomeScreen extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        myUser = initializeUser();
+        //myUser = initializeUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);

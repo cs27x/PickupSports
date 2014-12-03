@@ -27,13 +27,13 @@ public class ListedEventDialog extends Dialog{
         super(c);
 
         myUser = new User("name");
-        SharedPreferences sp = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0);
+        /*SharedPreferences sp = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0);
         for(String key : sp.getAll().keySet()){
             String k = sp.getString(key, null);
             if(k!=null && key.startsWith("event")){
                 myUser.joinEvent(new Event(k));
             }
-        }
+        }*/
         this.setContentView(R.layout.listed_event_dialog_layout);
         this.setTitle(e.getEventName());
 
@@ -98,7 +98,7 @@ public class ListedEventDialog extends Dialog{
         });
 
         Button delete = (Button)findViewById(R.id.buttonDelete);
-        join.setOnClickListener(new View.OnClickListener() {
+        delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
