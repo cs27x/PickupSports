@@ -76,6 +76,8 @@ public class ListedEventDialog extends Dialog{
         Button join = (Button)findViewById(R.id.buttonJoin);
         if(myUser.isJoinedEvent(e)){
             join.setText("un-join");
+        }else{
+            join.setText("join");
         }
         join.setOnClickListener(new View.OnClickListener() {
             @Override
