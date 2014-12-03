@@ -64,6 +64,8 @@ public class Event {
     public Event() {
         super();
     }
+
+    public Event(String x){super();}
     
     public Event(String eventName, String sport, String description, long maxAttendance,
                  String skillLevel, String equipment, String location,

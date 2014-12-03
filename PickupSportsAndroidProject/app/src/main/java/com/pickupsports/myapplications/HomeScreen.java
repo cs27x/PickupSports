@@ -2,6 +2,7 @@ package com.pickupsports.myapplications;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.pickupsports.client.EventSvcApi;
-import com.pickupsports.repository.Event;
+import com.pickupsports.repository.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +29,8 @@ public class HomeScreen extends ListActivity {
 //    RestaurantList filteredEvents;
       ListView listViewEvents;
       Collection<Event> myEvents;
+      User myUser;
+      final String PREFS_NAME = "mysp";
 //    Spinner spinnerSorting;
 //    Spinner spinnerFilter;
 //    ArrayAdapter<String> spinnerSortingAdapter;
@@ -38,6 +41,7 @@ public class HomeScreen extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        myUser = initializeUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);
@@ -184,6 +188,18 @@ public class HomeScreen extends ListActivity {
 //        }
 //        setListAdapter(listViewAdapter);
 //        this.listViewRestaurants.deferNotifyDataSetChanged();
+    }
+
+    public User initializeUser(){
+        User temp = new User("name");
+        SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
+        for(String key : sp.getAll().keySet()){
+            String k = sp.getString(key, null);
+            if(k!=null && key.startsWith("event")){
+                temp.joinEvent(new Event(k));
+            }
+        }
+        return temp;
     }
 
     private void refreshVideos() {

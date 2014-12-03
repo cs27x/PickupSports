@@ -15,15 +15,16 @@ import com.pickupsports.repository.Event;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Callable;
+import android.content.*;
 
 /**
  * AddEventDialog-
  * used to create the dialog used to create a new pickup sports event
  */
 public class AddEventDialog extends Dialog {
+    final String PREFS_NAME = "mysp";
 
     EventSvcApi eventService;
-
     public AddEventDialog(Context context) {
         super(context);
         this.setContentView(R.layout.add_event_dialog);
@@ -68,6 +69,10 @@ public class AddEventDialog extends Dialog {
                 cost = sportsSpinner.getSelectedItem().toString();
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
                         name.getText().toString(), time, location.getText().toString());
+
+                SharedPreferences.Editor editor = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0).edit();
+                editor.putString("event" + newEvent.getEventName(), newEvent.toString());
+                editor.commit();
                 if (cost.equals("Free")) {
                     newEvent.setFree(true);
                 }
