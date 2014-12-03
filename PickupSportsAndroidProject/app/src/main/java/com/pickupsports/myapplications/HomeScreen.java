@@ -41,7 +41,7 @@ public class HomeScreen extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);
-        refreshVideos();
+        //refreshVideos();
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
