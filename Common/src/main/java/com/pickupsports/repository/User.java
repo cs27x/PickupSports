@@ -35,6 +35,10 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private Set<Event> joinedEvents;
 
+    public User() {
+        super();
+    }
+
     /**
      * Constructs a User object with the users name
      * @param n the name of the user
@@ -47,12 +51,32 @@ public class User {
         joinedEvents = new HashSet<>();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Set<Event> getJoinedEvents() {
+        return joinedEvents;
+    }
+
+    public void setJoinedEvents(Set<Event> joinedEvents) {
+        this.joinedEvents = joinedEvents;
+    }
+
     /**
      *
      * @return name of the user
      */
     public String getName(){
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
