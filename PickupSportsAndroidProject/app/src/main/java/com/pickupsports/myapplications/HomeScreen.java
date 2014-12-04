@@ -29,8 +29,8 @@ public class HomeScreen extends ListActivity {
 //    RestaurantList filteredEvents;
       ListView listViewEvents;
       Collection<Event> myEvents;
-      User myUser;
       final String PREFS_NAME = "mysp";
+      ArrayList<Long> joinedEvents;
 //    Spinner spinnerSorting;
 //    Spinner spinnerFilter;
 //    ArrayAdapter<String> spinnerSortingAdapter;
@@ -41,7 +41,16 @@ public class HomeScreen extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //myUser = initializeUser();
+        joinedEvents = new ArrayList<Long>();
+        SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
+        for(String key : sp.getAll().keySet()){
+            long k = sp.getLong(key, 0);
+            if(key.startsWith("event")){
+                joinedEvents.add(k);
+            }
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);
@@ -190,19 +199,19 @@ public class HomeScreen extends ListActivity {
 //        this.listViewRestaurants.deferNotifyDataSetChanged();
     }
 
-    public User initializeUser(){
+    /*public User initializeUser(){
         User temp = new User("name");
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
         for(String key : sp.getAll().keySet()){
             String k = sp.getString(key, null);
-            if(k!=null && key.startsWith("event")){
+            if(k != null && key.startsWith("event")){
                 temp.joinEvent(new Event(k));
             }
         }
         return temp;
-    }
+    }*/
 
-    private void refreshVideos() {
+    public void refreshVideos() {
         final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
         if (svc != null) {

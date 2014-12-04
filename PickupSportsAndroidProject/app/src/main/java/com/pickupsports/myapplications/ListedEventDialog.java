@@ -3,6 +3,7 @@ package com.pickupsports.myapplications;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.*;
 
 import java.util.concurrent.Callable;
-
+import java.util.*;
 
 /**
  * Created by Jeremey on 10/29/2014.
@@ -20,20 +21,19 @@ import java.util.concurrent.Callable;
 public class ListedEventDialog extends Dialog{
 
     // Create custom dialog for a listed event
-    User myUser;
     final String PREFS_NAME = "mysp";
+    ArrayList<Long> joinedEvents = new ArrayList<Long>();
     public ListedEventDialog(final Context c, final Event e)
     {
         super(c);
 
-        myUser = new User("name");
-        /*SharedPreferences sp = getOwnerActivity().getSharedPreferences(PREFS_NAME, 0);
-        for(String key : sp.getAll().keySet()){
-            String k = sp.getString(key, null);
-            if(k!=null && key.startsWith("event")){
-                myUser.joinEvent(new Event(k));
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(c);
+        for(String key : mPrefs.getAll().keySet()){
+            Long k = mPrefs.getLong(key, 0);
+            if(key.startsWith("event")){
+                joinedEvents.add(k);
             }
-        }*/
+        }
         this.setContentView(R.layout.listed_event_dialog_layout);
         this.setTitle(e.getEventName());
 
@@ -77,7 +77,7 @@ public class ListedEventDialog extends Dialog{
 
         // onClickListener for Join button
         Button join = (Button)findViewById(R.id.buttonJoin);
-        if(myUser.isJoinedEvent(e)){
+        if(joinedEvents.contains(e.getId())){
             join.setText("un-join");
         }else{
             join.setText("join");
@@ -86,11 +86,19 @@ public class ListedEventDialog extends Dialog{
             @Override
             public void onClick(View view) {
                 Event event = e;
-                if(myUser.isJoinedEvent(event)) {
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences( c );
+                SharedPreferences.Editor editor = mPrefs.edit();
+                if(joinedEvents.contains(event.getId())) {
                     event.decrementAttendance();
+                    editor.remove("event" + event.getEventName());
                 }else{
                     event.incrementAttendance();
+
+                    editor.putLong("event" + event.getEventName(), event.getId());
+
                 }
+
+                editor.commit();
                 updateEvent(event);
 
                 ListedEventDialog.this.dismiss();
