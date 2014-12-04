@@ -98,8 +98,8 @@ public class Application extends RepositoryRestMvcConfiguration {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl("jdbc:"+System.getenv("DATABASE_URL"));
-//        ds.setUsername(System.getenv("DATABASE_USER"));
-//        ds.setPassword(System.getenv("DATABASE_PASS"));
+        ds.setUsername(System.getenv("DATABASE_USER"));
+        ds.setPassword(System.getenv("DATABASE_PASS"));
         return ds;
     }
 
