@@ -1,6 +1,7 @@
 package com.pickupsports.myapplications;
 
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -65,6 +66,12 @@ public class HomeScreen extends ListActivity {
                 Event clickedEvent = iterator.next();
                 Log.i("help", clickedEvent.getEventName());
                 ListedEventDialog dialog = new ListedEventDialog(HomeScreen.this, clickedEvent);
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        HomeScreen.this.refreshVideos();
+                    }
+                });
                 dialog.show();
             }
         });
@@ -100,6 +107,12 @@ public class HomeScreen extends ListActivity {
         switch (item.getItemId()) {
             case R.id.action_new_event:
                 AddEventDialog dialog = new AddEventDialog(this);
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        HomeScreen.this.refreshVideos();
+                    }
+                });
                 dialog.show();
                 return true;
 //            case R.id.action_settings:
