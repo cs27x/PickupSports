@@ -64,7 +64,20 @@ public class Event {
     public Event() {
         super();
     }
-    
+
+    public Event(String x){
+        String[] array = x.split("\t");
+        eventName = array[0];
+        sport = array[1];
+        description = array[2];
+        attendance = Long.parseLong(array[3]);
+        skillLevel = array[4];
+        equipment = array[5];
+        location = array[6];
+        //time =new Time(array[7]);
+        free = Boolean.parseBoolean(array[8]);
+    }
+
     public Event(String eventName, String sport, String description, long maxAttendance,
                  String skillLevel, String equipment, String location,
                  Date time, boolean free) {
@@ -238,8 +251,8 @@ public class Event {
 
     @Override
     public String toString() {
-        return eventName + " / " + sport + " / " + description + " / " + attendance + " / " + skillLevel + " / "
-                + equipment + " / " + location + " / " + time + " / " + free;
+        return eventName + "\t" + sport + "\t" + description + "\t" + attendance + "\t" + skillLevel + "\t"
+                + equipment + "\t" + location + "\t" + time + "\t" + free;
     }
 }
 

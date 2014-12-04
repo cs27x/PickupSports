@@ -76,6 +76,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/buttonDelete"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Join"
             android:id="@+id/buttonJoin"
             android:layout_weight="1"/>

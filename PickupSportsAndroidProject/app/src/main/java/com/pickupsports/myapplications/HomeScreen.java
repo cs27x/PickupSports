@@ -1,7 +1,9 @@
 package com.pickupsports.myapplications;
 
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.pickupsports.client.EventSvcApi;
-import com.pickupsports.repository.Event;
+import com.pickupsports.repository.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +30,8 @@ public class HomeScreen extends ListActivity {
 //    RestaurantList filteredEvents;
       ListView listViewEvents;
       Collection<Event> myEvents;
+      final String PREFS_NAME = "mysp";
+      ArrayList<Long> joinedEvents;
 //    Spinner spinnerSorting;
 //    Spinner spinnerFilter;
 //    ArrayAdapter<String> spinnerSortingAdapter;
@@ -38,6 +42,16 @@ public class HomeScreen extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        joinedEvents = new ArrayList<Long>();
+        SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
+        for(String key : sp.getAll().keySet()){
+            long k = sp.getLong(key, 0);
+            if(key.startsWith("event")){
+                joinedEvents.add(k);
+            }
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         listViewEvents = (ListView) findViewById(android.R.id.list);
@@ -52,6 +66,12 @@ public class HomeScreen extends ListActivity {
                 Event clickedEvent = iterator.next();
                 Log.i("help", clickedEvent.getEventName());
                 ListedEventDialog dialog = new ListedEventDialog(HomeScreen.this, clickedEvent);
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        HomeScreen.this.refreshVideos();
+                    }
+                });
                 dialog.show();
             }
         });
@@ -87,6 +107,12 @@ public class HomeScreen extends ListActivity {
         switch (item.getItemId()) {
             case R.id.action_new_event:
                 AddEventDialog dialog = new AddEventDialog(this);
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        HomeScreen.this.refreshVideos();
+                    }
+                });
                 dialog.show();
                 return true;
 //            case R.id.action_settings:
@@ -186,7 +212,19 @@ public class HomeScreen extends ListActivity {
 //        this.listViewRestaurants.deferNotifyDataSetChanged();
     }
 
-    private void refreshVideos() {
+    /*public User initializeUser(){
+        User temp = new User("name");
+        SharedPreferences sp = getSharedPreferences(PREFS_NAME, 0);
+        for(String key : sp.getAll().keySet()){
+            String k = sp.getString(key, null);
+            if(k != null && key.startsWith("event")){
+                temp.joinEvent(new Event(k));
+            }
+        }
+        return temp;
+    }*/
+
+    public void refreshVideos() {
         final EventSvcApi svc = EventSvc.init("http://pickupsports.herokuapp.com");
 
         if (svc != null) {

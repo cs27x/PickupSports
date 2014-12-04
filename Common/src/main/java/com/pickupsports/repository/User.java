@@ -48,7 +48,7 @@ public class User {
         attendanceRating = 0;
         skillRating = 0;
 //        favoriteSports = new HashSet<>();
-        joinedEvents = new HashSet<>();
+        joinedEvents = new HashSet<Event>();
     }
 
     public long getId() {

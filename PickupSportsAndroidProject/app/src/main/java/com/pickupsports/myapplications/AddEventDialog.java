@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.preference.*;
+import android.app.Activity;
 
 import com.pickupsports.client.EventSvcApi;
 import com.pickupsports.repository.Event;
@@ -15,17 +17,19 @@ import com.pickupsports.repository.Event;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.Callable;
+import android.content.*;
 
 /**
  * AddEventDialog-
  * used to create the dialog used to create a new pickup sports event
  */
 public class AddEventDialog extends Dialog {
-
+    final String PREFS_NAME = "mysp";
+    Context mContext;
     EventSvcApi eventService;
-
     public AddEventDialog(Context context) {
         super(context);
+        mContext = context;
         this.setContentView(R.layout.add_event_dialog);
         this.setTitle(context.getResources().getString(R.string.event_dialog_title));
 
@@ -69,6 +73,11 @@ public class AddEventDialog extends Dialog {
                 cost = sportsSpinner.getSelectedItem().toString();
                 Event newEvent = createBasicEvent(sport, notes.getText().toString(),
                         name.getText().toString(), time, location.getText().toString(), skillLevel.getText().toString());
+
+                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences( mContext );
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putLong("event" + newEvent.getEventName(), newEvent.getId());
+                editor.commit();
                 if (cost.equals("Free")) {
                     newEvent.setFree(true);
                 }
@@ -77,6 +86,7 @@ public class AddEventDialog extends Dialog {
                     newEvent.setFree(false);
                 }
                 refreshVideos(newEvent);
+
                 AddEventDialog.this.dismiss();
             }
         });
@@ -129,13 +139,14 @@ public class AddEventDialog extends Dialog {
 
                 @Override
                 public void success(Void result) {
-//                    List<String> names = new ArrayList<String>();
-//                    for (Void v : result) {
-//                        names.add(v.getName());
-//                    }
-//                    videoList_.setAdapter(new ArrayAdapter<String>(
-//                            VideoListActivity.this,
-//                            android.R.layout.simple_list_item_1, names));
+
+                    /*List<String> names = new ArrayList<String>();
+                    for (Void v : result) {
+                        names.add(v.getName());
+                    }
+                    videoList_.setAdapter(new ArrayAdapter<String>(
+                            VideoListActivity.this,
+                            android.R.layout.simple_list_item_1, names));*/
                 }
 
                 @Override
